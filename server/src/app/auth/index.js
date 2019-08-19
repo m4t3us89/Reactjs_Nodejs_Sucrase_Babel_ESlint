@@ -20,12 +20,12 @@ router.post('', async (req, res) => {
     })
 
     if (!user) {
-      return res.status(200).send({ message: 'Login/Password incorreto.' })
+      return res.status(400).send({ message: 'Login/Password incorreto.' })
     }
 
     const token = await jsonwebtoken.sign({ user }, 'shhh')
 
-    return res.status(201).send({ token, user })
+    return res.status(200).send({ token, user })
   } catch (err) {
     return res.status(400).send({
       message: 'Requisição não processada'

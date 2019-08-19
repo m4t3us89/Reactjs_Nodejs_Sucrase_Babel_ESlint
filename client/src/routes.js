@@ -2,7 +2,7 @@ import React from 'react'
 
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
-import Todo from './components/todo'
+import Home from './components/home'
 
 import isAuthenticated from './auth/auth'
 
@@ -22,8 +22,10 @@ const PrivateRoute = ({ component: Componenet, ...rest }) => (
 export default () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path='/' component={Todo} />
+      <Route exact path='/' component={Home} />
+      {/*
       <PrivateRoute path='/products/:id' component={Todo} />
+      */}
     </Switch>
   </BrowserRouter>
 )
