@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background: #7159c1;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: 0.6fr 3fr;
+        grid-template-rows: 10vh 80vh 10vh;
+        grid-template-areas:
+          "h h"
+          "a m"
+          "f f";
+      }
+      header {
+        background: black;
+        grid-area: h;
+      }
+      aside {
+        background: red;
+        grid-area: a;
+        /*grid-row-start: 1;
+        grid-row-end: 3;*/
+      }
+      main {
+        background: blue;
+        grid-area: m;
+      }
+      footer {
+        background: black;
+        grid-area: f;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>NavBar</header>
+      <aside>SideBar</aside>
+      <main>Body</main>
+      <footer>Footer</footer>
+    </div>
+  </body>
+</html>
