@@ -1,3 +1,7 @@
-const isAuthenticated = () => /*Veificar se o token existe no sotrage do browser*/ true
+const isAuthenticated = () => {
+  const credentials = JSON.parse(localStorage.getItem('credentials'))
 
-export default  isAuthenticated
+  if (!credentials) return false
+  return true
+}
+export default isAuthenticated

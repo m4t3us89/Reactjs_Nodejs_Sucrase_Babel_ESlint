@@ -14,7 +14,8 @@ import {
 
 export default class Header extends Component {
   state = {
-    show: false
+    show: false,
+    isAuthenticated: !!localStorage.getItem('credentials')
   }
 
   handle = () => {
@@ -23,8 +24,12 @@ export default class Header extends Component {
     })
   }
 
+  logout = () => {
+    localStorage.clear()
+  }
+
   render () {
-    const { show } = this.state
+    const { show, isAuthenticated } = this.state
     return (
       <header id='main-header'>
         <Modal show={show} onHide={this.handle}>
@@ -63,9 +68,15 @@ export default class Header extends Component {
             </Nav>
 
             <Nav>
-              <Nav.Link onClick={this.handle}>
-                <FaUser /> Entrar
-              </Nav.Link>
+              {!isAuthenticated ? (
+                <Nav.Link onClick={this.handle}>
+                  <FaUser /> Entrar
+                </Nav.Link>
+              ) : (
+                <Nav.Link onClick={this.logout}>
+                  <FaUser /> Sair
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

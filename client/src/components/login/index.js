@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import api from '../../services/axios'
 import { Form, Button, Alert } from 'react-bootstrap'
 import { FaSignInAlt } from 'react-icons/fa'
+import { Redirect } from 'react-router-dom'
 import './styles.css'
 
 export default class Login extends Component {
@@ -19,7 +20,7 @@ export default class Login extends Component {
     const { email, password } = this.state
     event.preventDefault()
     try {
-      const user = await api.post('auth', {
+      const { data: credentials } = await api.post('auth', {
         email,
         password
       })
@@ -30,6 +31,8 @@ export default class Login extends Component {
           message: 'Logado com sucesso!'
         }
       })
+      localStorage.setItem('credentials', JSON.stringify(credentials))
+      return <Redirect to='/todo' />
     } catch (err) {
       const { message: responseError } = err.response.data
       this.setState({

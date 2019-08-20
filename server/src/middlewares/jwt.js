@@ -6,7 +6,7 @@ export default async (req, res, next) => {
     await jsonwebtoken.verify(token, 'shhh')
     return next()
   } catch (err) {
-    return res.status(401).send({
+    return res.status(403).send({
       message: 'Acesso Negado'
     })
   }
