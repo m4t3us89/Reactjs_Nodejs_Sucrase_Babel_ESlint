@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
@@ -21,11 +21,18 @@ const PrivateRoute = ({ component: Componenet, ...rest }) => (
   />
 )
 
-export default () => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path='/' component={Home} />
-      <PrivateRoute path='/todo' component={Todo} />
-    </Switch>
-  </BrowserRouter>
-)
+export default class Routes extends Component {
+  render () {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={() => <Home {...this.props} />} />
+          <PrivateRoute
+            path='/todo'
+            component={() => <Todo {...this.props} />}
+          />
+        </Switch>
+      </BrowserRouter>
+    )
+  }
+}

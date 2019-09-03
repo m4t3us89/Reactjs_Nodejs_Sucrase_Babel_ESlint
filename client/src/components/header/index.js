@@ -2,17 +2,9 @@ import React, { Component } from 'react'
 import Login from '../login'
 import { FaUser, FaWindowClose } from 'react-icons/fa'
 import './styles.css'
-import {
-  Navbar,
-  NavDropdown,
-  // FormControl,
-  Nav,
-  Button,
-  // Form,
-  Modal
-} from 'react-bootstrap'
+import { Navbar, NavDropdown, Nav, Button, Modal } from 'react-bootstrap'
 
-export default class Header extends Component {
+class Header extends Component {
   state = {
     show: false,
     isAuthenticated: !!localStorage.getItem('credentials')
@@ -26,6 +18,7 @@ export default class Header extends Component {
 
   logout = () => {
     localStorage.clear()
+    window.location = '/'
   }
 
   render () {
@@ -37,7 +30,7 @@ export default class Header extends Component {
             <Modal.Title>Autenticação</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Login />
+            <Login {...this.props} />
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={this.handle}>
@@ -50,8 +43,7 @@ export default class Header extends Component {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='mr-auto'>
-              <Nav.Link onClick={this.handle}>Home</Nav.Link>
-              <Nav.Link href='#link'>Link</Nav.Link>
+              <Nav.Link to='home'>Link</Nav.Link>
               <NavDropdown title='Dropdown' id='basic-nav-dropdown'>
                 <NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
                 <NavDropdown.Item href='#action/3.2'>
@@ -84,3 +76,5 @@ export default class Header extends Component {
     )
   }
 }
+
+export default Header

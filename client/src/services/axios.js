@@ -1,5 +1,4 @@
 import axios from 'axios'
-import {} from 'react-dom'
 
 const api = axios.create({
   baseURL: 'http://localhost:3333/'

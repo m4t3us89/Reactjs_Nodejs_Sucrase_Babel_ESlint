@@ -1,13 +1,25 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import api from '../../services/axios'
 
-export default class Todo extends Component {
-  async componentDidMount () {
-    const todos = await api.get('todo')
-    console.log(todos)
+export default function Todo () {
+  const [todos, setTodos] = useState([])
+
+  useEffect(() => {
+    getTodos()
+  }, [])
+
+  async function getTodos () {
+    const { data: todosN } = await api.get('todo')
+    setTodos(todosN)
   }
 
-  render () {
-    return <div>Todo</div>
-  }
+  return (
+    <>
+      <ul>
+        {todos.map(todo => (
+          <li key={todo.id}> {todo.title} </li>
+        ))}
+      </ul>
+    </>
+  )
 }
